@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Conversor de Moeda (Estudo)</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app" role="application" aria-label="Conversor de Moedas">
+    <header>
+      <h1><span class="logo">¢</span> Conversor de Moeda <span class="muted">• nível de estudo</span></h1>
+      <div class="chip" id="lastUpdated">Taxas carregadas: <span class="mono" style="margin-left:6px">—</span></div>
+    </header>
+
+    <div class="row" aria-live="polite">
+      <div>
+        <label for="amount">Valor</label>
+        <input id="amount" type="number" inputmode="decimal" min="0" step="0.01" placeholder="Ex.: 100.00" value="100" />
+      </div>
+      <div>
+        <label for="base">De</label>
+        <select id="base"></select>
+      </div>
+      <div>
+        <label for="target">Para</label>
+        <select id="target"></select>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button id="swap" title="Inverter moedas" aria-label="Inverter moedas">↕️ Inverter</button>
+      <button id="convert">Converter</button>
+      <button id="update" class="secondary" title="Buscar taxas mais recentes">Atualizar taxas</button>
+      <span class="muted small">Dica: pressione <span class="kbd">Enter</span> para converter.</span>
+    </div>
+
+    <div class="result" id="result">—</div>
+
+    <div class="grid-3">
+      <div class="card">
+        <strong class="small">Resumo rápido</strong>
+        <div id="quick" class="small muted" style="margin-top:8px">—</div>
+      </div>
+      <div class="card">
+        <strong class="small">Taxas (base = <span id="baseLabel">USD</span>)</strong>
+        <table class="table" aria-describedby="baseLabel">
+          <thead>
+            <tr><th>Moeda</th><th>1 base =&gt;</th></tr>
+          </thead>
+          <tbody id="ratesTable"></tbody>
+        </table>
+      </div>
+      <div class="card">
+        <strong class="small">Como funciona</strong>
+        <ol class="small muted" style="margin-top:6px; padding-left:18px">
+          <li>As taxas são carregadas da API pública <span class="mono">exchangerate.host</span> (sem chave).</li>
+          <li>Se falhar, usamos uma <em>tabela offline</em> embutida (apenas para estudo).</li>
+          <li>Você pode editar o código para adicionar mais moedas ou mudar a API.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="foot">
+      <div class="status" id="status">Pronto.</div>
+      <div class="muted small">Atalhos: <span class="kbd">Enter</span> converter • <span class="kbd">Ctrl</span> + <span class="kbd">I</span> inverter</div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
